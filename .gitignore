@@ -1,0 +1,12 @@
+venv/
+__pycache__/
+vosk-model*
+*.pt
+*.pth
+*.pkl
+*.onnx
+*.weights
+datasets/
+models/
+*.zip
+*.mp4

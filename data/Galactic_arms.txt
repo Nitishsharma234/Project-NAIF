@@ -1,0 +1,22 @@
+This article is about the galactic arm of the Milky Way Galaxy. For the stars which form the arm of the Orion asterism, see Orion (constellation). For other uses, see Arm of Orion (disambiguation).
+
+Figure 1.The reconstructed structure of the Milky Way's spiral arms[1]
+The Orion Arm, also known as the Orion–Cygnus Arm, is a minor spiral arm within the Milky Way Galaxy spanning 3,500 light-years (1,100 parsecs) in width and extending roughly 20,000 light-years (6,100 parsecs) in length.[2] This galactic structure encompasses the Solar System, including Earth. It is sometimes referred to by alternate names such as the Local Arm or Orion Bridge, and it was previously identified as the Local Spur or the Orion Spur. It should not be confused with the outer terminus of the Norma Arm, known as the Cygnus Arm.
+
+Naming and brightness
+The arm is named after the Orion Constellation, one of the most prominent constellations of the Northern Hemisphere in winter (or the Southern Hemisphere in summer). Some of the brightest stars in the sky as well as other well-known celestial objects of the constellation (e.g. Betelgeuse, Rigel, the three stars of Orion's Belt, and the Orion Nebula) are found within it, as shown on Orion Arm's interactive map.
+
+Location
+The Orion Arm is located between the Carina–Sagittarius Arm, the local portion of which projects toward the Galactic Center, and the Perseus Arm's local portion, which forms the main outer-most arm.
+
+Scientists once believed the Orion Arm to be a minor structure, namely a "spur" between Carina-Sagittarius and Perseus, but evidence presented in 2013 suggests the Orion Arm to be a branch of the Perseus Arm or possibly an independent arm segment.[3]
+
+The Solar System is close to its inner rim, about halfway along the arm's length, in a relative cavity in the arm's interstellar medium, known as the Local Bubble. It is approximately 8,000 parsecs (26,000 light-years) from the Galactic Center.
+
+Composition
+Recently, the BeSSeL Survey (Bar and Spiral Structure Legacy Survey) analyzed the parallax and proper motion of more than 30 methanol (6.7-GHz) and water (22-GHz) masers in high-mass, star-forming regions within a few kiloparsecs of the Sun. Their measurement has accuracy above ±10% and even 3%.[citation needed] The accurate locations of interstellar masers in HMSFRs (high-mass star-forming regions) suggests the Local Arm appears to be an orphan segment of an arm between the Sagittarius and Perseus arms that wraps around less than a quarter of the Milky Way. The segment has a length of ~20,000 ly in length and ~3,000 ly in width, with a pitch angle of 10.1° ± 2.7° to 11.6° ± 1.8°. These results suggest the Local Arm is larger than previously thought, and both its pitch angle and star formation rate are comparable to those of the Galaxy's major spiral arms. The Local Arm is reasonably referred to as the fifth feature in the Milky Way.[4][5][6][7][8]
+
+Form
+To understand the form of the Local Arm between the Sagittarius and Perseus arms, the stellar density of a specific population of stars with about 1 Gyr of age between 90° ≤ l ≤ 270° have been mapped using the Gaia DR2.[9] The 1 Gyr population have been employed because they are significantly more-evolved objects than the gas in HMSFRs tracing the Local Arm. Investigations have been carried out to compare both the stellar density and gas distribution along the Local Arm. Researchers have found a marginally significant arm-like stellar overdensity close to the Local Arm, identified with the HMSFRs, especially in the region of 90° ≤ l ≤ 190°.[8]
+
+The researchers have concluded that the Local Arm segment is associated only with gas and star-forming clouds, showing a significant overdensity of stars. They have also found that the pitch angle of the stellar arm is slightly larger than the gas-defined arm, and there is an offset between the gas-defined and stellar arm. These differences in pitch angles and offsets between the stellar and HMSFR-defined spiral arms are consistent with the expectation that star formation lags behind gas compression in a spiral density wave that lasts longer than the typical star formation timescale of 107 − 108 years.[10]

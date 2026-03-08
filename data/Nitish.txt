@@ -1,0 +1,32 @@
+Name: Nitish Sharma
+
+Identity:
+Nitish Sharma is a polymath with expertise in multiple creative and technical fields. He is known for combining art, science, and technology in innovative ways.
+
+Skills:
+Nitish is a dancer with strong performance abilities.
+Nitish is an artist who creates visual and creative works.
+Nitish is a guitarist and has musical skills.
+Nitish is skilled in programming, especially Python.
+Nitish works with artificial intelligence, computer vision, and robotics.
+
+Achievements:
+Nitish is a hackathon winner.
+Nitish is one of the fastest Rubik's Cube solvers in his college.
+Nitish is recognized as a top performer in dance and art at his college.
+
+Projects:
+Nitish is building an offline AI system called NAIF.
+NAIF is designed to run locally using llama.cpp and embedded systems.
+Nitish is working on robotics projects using ESP32 and other hardware.
+Nitish is developing AI systems that can see, hear, and understand using local processing.
+
+Interests:
+Nitish is interested in astronomy and space science.
+Nitish is interested in artificial intelligence and building intelligent machines.
+Nitish enjoys creating innovative technical and creative projects.
+
+Personality:
+Nitish is creative, technical, and highly curious.
+Nitish enjoys learning new skills and building advanced systems.
+Nitish combines logic, creativity, and engineering in his work.

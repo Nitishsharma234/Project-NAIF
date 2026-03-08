@@ -1,0 +1,222 @@
+A bone fracture (abbreviated FRX or Fx, Fx, or #) is a medical condition in which there is a partial or complete break in the continuity of any bone in the body. In more severe cases, the bone may be broken into several fragments, known as a comminuted fracture.[1] An open fracture (or compound fracture) is a bone fracture where the broken bone breaks through the skin.[2]
+
+A bone fracture may be the result of high force impact or stress, or a minimal trauma injury as a result of certain medical conditions that weaken the bones, such as osteoporosis, osteopenia, bone cancer, or osteogenesis imperfecta, where the fracture is then properly termed a pathologic fracture.[3] Most bone fractures require urgent medical attention to prevent further injury.
+
+Signs and symptoms
+Although bone tissue contains no pain receptors, a bone fracture is painful for several reasons:[4]
+
+Breaking in the continuity of the periosteum, with or without similar discontinuity in endosteum, as both contain multiple pain receptors.
+Edema and hematoma of nearby soft tissues caused by ruptured bone marrow evokes pressure pain.
+Involuntary muscle spasms trying to hold bone fragments in place.
+Damage to adjacent structures such as nerves, muscles or blood vessels, spinal cord, and nerve roots (for spine fractures), or cranial contents (for skull fractures) may cause other specific signs and symptoms.[5]
+
+Complications
+
+An old fracture with nonunion of the fracture fragments
+Some fractures may lead to serious complications, including a condition known as compartment syndrome. If not treated, eventually, compartment syndrome may require amputation of the affected limb. Other complications may include non-union, where the fractured bone fails to heal, or malunion, where the fractured bone heals in a deformed manner. One form of malunion is the malrotation of a bone, which is especially common after femoral and tibial fractures.[6] Complications of fractures may be classified into three broad groups, depending upon their time of occurrence. These are as follows –
+
+Immediate complications – occurs at the time of the fracture.
+Early complications – occurring in the initial few days after the fracture.
+Late complications – occurring a long time after the fracture.
+
+
+Immediate	Early	Late
+Systemic
+Hypovolaemic shock
+Systemic
+Hypovolemic shock
+ARDS – Acute respiratory distress syndrome
+Fat embolism syndrome
+Deep vein thrombosis
+Pulmonary Embolism syndrome
+Aseptic traumatic fever
+Sepsis (in open fracture )
+Crush syndrome
+Imperfect union of the fracture
+Delayed union
+Non-union
+Malunion
+Cross union
+Local
+Injury to major vessels
+Injury to muscles and tendons
+Injury to joints
+Injury to viscera
+Local
+Infection
+Compartment syndrome
+Others
+Avascular necrosis
+Shortening
+Joint stiffness
+Sudeck's dystrophy
+Osteomyelitis
+Ischaemic contracture
+Myositis ossificans
+Osteoarthritis
+Pathophysiology
+Main article: Bone healing
+
+Stages in Fracture Repair: The healing of a bone fracture follows a series of progressive steps: (a) A fracture hematoma forms. (b) Internal and external calli form. (c) Cartilage of the calli is replaced by trabecular bone. (d) Remodeling occurs.
+The natural process of healing a fracture starts when the injured bone and surrounding tissues bleed, forming a fracture hematoma. The blood coagulates to form a blood clot situated between the broken fragments.[7] Within a few days, blood vessels grow into the jelly-like matrix of the blood clot. The new blood vessels bring phagocytes to the area, which gradually removes the non-viable material. The blood vessels also bring fibroblasts in the walls of the vessels and these multiply and produce collagen fibres. In this way, the blood clot is replaced by a matrix of collagen. Collagen's rubbery consistency allows bone fragments to move only a small amount unless severe or persistent force is applied.[citation needed]
+
+At this stage, some of the fibroblasts begin to lay down bone matrix in the form of collagen monomers. These monomers spontaneously assemble to form the bone matrix, for which bone crystals (calcium hydroxyapatite) are deposited in amongst, in the form of insoluble crystals. This mineralization of the collagen matrix stiffens it and transforms it into bone. In fact, bone is a mineralized collagen matrix; if the mineral is dissolved out of bone, it becomes rubbery. Healing bone callus on average is sufficiently mineralized to show up on X-ray within 6 weeks in adults and less in children. This initial "woven" bone does not have the strong mechanical properties of mature bone. By a process of remodelling, the woven bone is replaced by mature "lamellar" bone. The whole process may take up to 18 months, but in adults, the strength of the healing bone is usually 80% of normal by 3 months after the injury.[citation needed]
+
+Several factors may help or hinder the bone healing process. For example, tobacco smoking hinders the process of bone healing,[8] and adequate nutrition (including calcium intake) will help the bone healing process. Weight-bearing stress on bone, after the bone has healed sufficiently to bear the weight, also builds bone strength.
+
+Although there are theoretical concerns about NSAIDs slowing the rate of healing, there is not enough evidence to warrant withholding the use of this type analgesic in simple fractures.[9]
+
+Effects of smoking
+Main article: Health effects of tobacco
+Smokers generally have lower bone density than non-smokers, so they have a much higher risk of fractures. There is also evidence that smoking delays bone healing.[10]
+
+Diagnosis
+
+Radiography to identify possible fractures after a knee injury
+A bone fracture may be diagnosed based on the history given and the physical examination performed. Radiographic imaging is often performed to confirm the diagnosis. Under certain circumstances, radiographic examination of the nearby joints is indicated to exclude dislocations and fracture-dislocations. In situations where projectional radiography alone is insufficient, Computed Tomography (CT) or Magnetic Resonance Imaging (MRI) may be indicated.[citation needed]
+
+Classification
+"Compound Fracture" redirects here. For the 2013 horror film, see Compound Fracture (film).
+
+Compare healthy bone with different types of fractures:
+   (a) closed fracture
+   (b) open fracture
+   (c) transverse fracture
+   (d) spiral fracture
+   (e) comminuted fracture
+   (f) impacted fracture
+   (g) greenstick fracture
+   (h) oblique fracture
+
+Open ankle fracture with luxation
+
+Periprosthetic fracture of left femur
+In orthopedic medicine, fractures are classified in various ways. Historically, they are named after the physician who first described the fracture conditions; however, there are more systematic classifications as well.[citation needed]
+
+They may be divided into stable versus unstable depending on the likelihood that they may shift further.[citation needed]
+
+Mechanism
+Traumatic fracture – a fracture due to sustained trauma. e.g., fractures caused by a fall, road traffic accident, fight, etc.
+Pathologic fracture – A fracture through a bone that has been made weak by some underlying disease is called a pathological fracture. e.g., a fracture through a bone weakened by metastasis. Osteoporosis is the most common cause of pathological fracture.
+Periprosthetic fracture – a fracture at the point of mechanical weakness at the end of an implant.
+Soft-tissue involvement
+Closed/simple fractures are those in which the overlying skin is intact[11]
+Open/compound fractures involve wounds that communicate with the fracture, or where fracture hematoma is exposed, and may thus expose bone to contamination. Open injuries carry a higher risk of infection. Reports indicate an incidence of infection after internal fixation of closed fractures of 1-2%, rising to 30% in open fractures.[12]
+Clean fracture
+Contaminated fracture
+Displacement
+Non-displaced
+Displaced
+Translated, or ad latus, with sideways displacement.[13]
+Angulated
+Rotated
+Shortened, a reduction in overall bone length when displaced fracture fragments overlap
+Fracture pattern
+Main article: List of fracture patterns
+Linear fracture – a fracture that is parallel to the bone's long axis
+Transverse fracture – a fracture that is at a right angle to the bone's long axis
+Oblique fracture – a fracture that is diagonal to a bone's long axis (more than 30°)
+Spiral fracture – a fracture where at least one part of the bone has been twisted
+Compression fracture/wedge fracture – usually occurs in the vertebrae, for example when the front portion of a vertebra in the spine collapses due to osteoporosis (a medical condition which causes bones to become brittle and susceptible to fracture, with or without trauma)
+Impacted fracture – a fracture caused when bone fragments are driven into each other
+Avulsion fracture – a fracture where a fragment of bone is separated from the main mass
+Fragments
+Incomplete fracture – a fracture in which the bone fragments are still partially joined; in such cases, there is a crack in the osseous tissue that does not completely traverse the width of the bone.
+Complete fracture – a fracture in which bone fragments separate completely.
+Comminuted fracture – a fracture in which the bone has broken into several pieces.
+Anatomical location
+An anatomical classification may begin with specifying the involved body part, such as the head or arm, followed by more specific localization. Fractures that have additional definition criteria than merely localization often may be classified as subtypes of fractures, such as a Holstein-Lewis fracture being a subtype of a humerus fracture. Most typical examples in an orthopaedic classification given in the previous section cannot be classified appropriately into any specific part of an anatomical classification, however, as they may apply to multiple anatomical fracture sites.
+
+Skull fracture
+Basilar skull fracture
+Blowout fracture – a fracture of the walls or floor of the orbit
+Mandibular fracture
+Nasal fracture
+Le Fort fracture of skull – facial fractures involving the maxillary bone and surrounding structures in a usually bilateral and either horizontal, pyramidal, or transverse way.
+Spinal fracture
+Cervical fracture
+Fracture of C1, including Jefferson fracture
+Fracture of C2, including Hangman's fracture
+Flexion teardrop fracture – a fracture of the anteroinferior aspect of a cervical vertebral
+Clay-shoveler fracture – fracture through the spinous process of a vertebra occurring at any of the lower cervical or upper thoracic vertebrae
+Burst fracture – in which a vertebra breaks from a high-energy axial load
+Compression fracture – a collapse of a vertebra, often in the form of wedge fractures due to larger compression anteriorly
+Chance fracture – compression injury to the anterior portion of a vertebral body with concomitant distraction injury to the posterior elements
+Holdsworth fracture – an unstable fracture dislocation of the thoraco lumbar junction of the spine
+Rib fracture
+Sternal fracture
+Shoulder fracture
+Clavicle fracture
+Scapular fracture
+Arm fracture
+Humerus fracture (fracture of upper arm)
+Supracondylar fracture
+Holstein-Lewis fracture – a fracture of the distal third of the humerus resulting in entrapment of the radial nerve
+Forearm fracture
+Ulnar fracture
+Monteggia fracture – a fracture of the proximal third of the ulna with the dislocation of the head of the radius
+Hume fracture – a fracture of the olecranon with an associated anterior dislocation of the radial head
+Radius fracture
+Essex-Lopresti fracture – a fracture of the radial head with concomitant dislocation of the distal radio-ulnar joint with disruption of the interosseous membrane[14]
+Distal radius fracture
+Galeazzi fracture – a fracture of the radius with dislocation of the distal radioulnar joint
+Colles' fracture – a distal fracture of the radius with dorsal (posterior) displacement of the wrist and hand
+Smith's fracture – a distal fracture of the radius with volar (ventral) displacement of the wrist and hand
+Barton's fracture – an intra-articular fracture of the distal radius with dislocation of the radiocarpal joint
+Hand fracture
+Scaphoid fracture
+Rolando fracture – a comminuted intra-articular fracture through the base of the first metacarpal bone
+Bennett's fracture – a fracture of the base of the first metacarpal bone which extends into the carpometacarpal (CMC) joint [15]
+Boxer's fracture – a fracture at the neck of a metacarpal
+Broken finger – a fracture of the carpal phalanges
+Pelvic fracture
+Fracture of the hip bone
+Duverney fracture – an isolated pelvic fracture involving only the iliac wing
+Femoral fracture
+Hip fracture (anatomically a fracture of the femur bone and not the hip bone)
+Patella fracture
+Crus fracture
+Tibia fracture
+Pilon fracture
+Tibial plateau fracture
+Bumper fracture – a fracture of the lateral tibial plateau caused by a forced valgus applied to the knee
+Segond fracture – an avulsion fracture of the lateral tibial condyle
+Gosselin fracture – a fractures of the tibial plafond into anterior and posterior fragments [16]
+Toddler's fracture – an undisplaced and spiral fracture of the distal third to distal half of the tibia [17]
+Fibular fracture
+Maisonneuve fracture – a spiral fracture of the proximal third of the fibula associated with a tear of the distal tibiofibular syndesmosis and the interosseous membrane
+Le Fort fracture of ankle – a vertical fracture of the antero-medial part of the distal fibula with avulsion of the anterior tibiofibular ligament[16]
+Bosworth fracture – a fracture with an associated fixed posterior dislocation of the distal fibular fragment that becomes trapped behind the posterior tibial tubercle; the injury is caused by severe external rotation of the ankle [18]
+Combined tibia and fibula fracture
+Trimalleolar fracture – involving the lateral malleolus, medial malleolus, and the distal posterior aspect of the tibia
+Bimalleolar fracture – involving the lateral malleolus and the medial malleolus
+Pott's fracture
+Foot fracture
+Lisfranc fracture – in which one or all of the metatarsals are displaced from the tarsus[19]
+Jones fracture – a fracture of the proximal end of the fifth metatarsal
+March fracture – a fracture of the distal third of one of the metatarsals occurring because of recurrent stress
+Cuneiform fracture – a fracture of one of the three cuneiform bones typically due to direct blow, axial load, or avulsion [20]
+Calcaneal fracture – a fracture of the calcaneus (heel bone)
+Broken toe – a fracture of the pedal phalanges
+OTA/AO classification
+Main article: Müller AO Classification of fractures
+The Orthopaedic Trauma Association Committee for Coding and Classification published its classification system [21] in 1996, adopting a similar system to the 1987 AO Foundation system.[22] In 2007, they extended their system,[23] unifying the two systems regarding wrist, hand, foot, and ankle fractures.
+
+Classifications named after people
+Main category: Orthopedic classifications
+Several classifications are named after the person (eponymous) who developed it.
+
+"Denis classification" for spinal fractures [24]
+"Frykman classification" for forearm fractures (fractures of radius and ulna)
+"Gustilo open fracture classification" [25]
+"Letournel and Judet Classification" for Acetabular fractures [26]
+"Neer classification" for humerus fractures [27][28]
+Seinsheimer classification, Evans-Jensen classification, Pipkin classification, and Garden classification for hip fractures[29]
+Prevention
+Both high- and low-force trauma can cause bone fracture injuries.[30][31] Preventive efforts to reduce motor vehicle crashes, the most common cause of high-force trauma, include reducing distractions while driving.[32] Common distractions are driving under the influence and texting or calling while driving, both of which lead to an approximate 6-fold increase in crashes.[32] Wearing a seatbelt can also reduce the likelihood of injury in a collision.[32] 30 km/h or 20 mph speed limits (as opposed to the more common intracity 50 km/h / 30 mph) also drastically reduce the risk of accident, serious injury and even death in crashes between motor vehicles and humans. Vision Zero aims to reduce traffic deaths to zero through better traffic design and other measures and to drastically reduce traffic injuries, which would prevent many bone fractures.
+
+A common cause of low-force trauma is an at-home fall.[30][31] When considering preventative efforts, the National Institute of Health (NIH) examines ways to reduce the likelihood of falling, the force of the fall, and bone fragility.[33] To prevent at-home falls they suggest keeping cords out of high-traffic areas where someone could trip, installing handrails and keeping stairways well-lit, and installing an assistive bar near the bathtub in the washroom for support.[33] To reduce the impact of a fall the NIH recommends to try falling straight down on your buttocks or onto your hands.[33]
+
+Some sports have a relatively high risk of bone fractures as a common sports injury. Preventive measures depend to some extent on the specific sport, but learning proper technique, wearing protective gear and having a realistic estimation of one's own capabilities and limitations can all help reduce the risk of bone fracture. In contact sports, rules have been put in place to protect athlete health, such as the prohibition of unnecessary roughness in American football.
+
+Taking calcium and vitamin D supplements can help strengthen your bones.[33] Vitamin D supplements combined with additional calcium marginally reduces the risk of hip fractures and other types of fracture in older adults; however, vitamin D supplementation alone did not reduce the risk of fractures.[34] Taking vibration therapy can also help strengthening bones and reducing the risk of a fracture.[35][36]

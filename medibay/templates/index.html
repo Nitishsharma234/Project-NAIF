@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NAIF Medi Core</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg:        #050d0d;
+    --panel:     #071212;
+    --border:    #0d3330;
+    --teal:      #00e5b4;
+    --teal-dim:  rgba(0,229,180,0.12);
+    --teal-glow: rgba(0,229,180,0.06);
+    --text:      #b0ccc8;
+    --text-dim:  #3a6660;
+    --pink:      #ff4d8d;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── TOPBAR ── */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    height: 52px;
+    border-bottom: 1px solid var(--border);
+    background: var(--panel);
+  }
+  .topbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Orbitron', monospace;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--teal);
+    letter-spacing: 0.1em;
+  }
+  .topbar-logo .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--teal);
+    box-shadow: 0 0 8px var(--teal);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  .topbar-meta {
+    display: flex;
+    gap: 32px;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--teal);
+    text-transform: uppercase;
+  }
+  .topbar-status {
+    border: 1px solid var(--teal);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    color: var(--teal);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .topbar-status .dot-sm {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--teal);
+    box-shadow: 0 0 6px var(--teal);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.4; }
+  }
+
+  /* ── MAIN LAYOUT ── */
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: calc(100vh - 52px);
+  }
+
+  /* ── PANELS ── */
+  .panel {
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+  }
+  .panel:last-child { border-right: none; }
+
+  .panel-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--teal);
+    background: var(--panel);
+    flex-shrink: 0;
+  }
+  .panel-header::before {
+    content: '';
+    width: 3px; height: 14px;
+    background: var(--teal);
+    box-shadow: 0 0 8px var(--teal);
+    border-radius: 1px;
+    flex-shrink: 0;
+  }
+
+  /* ── PANEL BODY ── */
+  .panel-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+  .panel-body::-webkit-scrollbar { width: 4px; }
+  .panel-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+  /* ── PANEL FOOTER ── */
+  .panel-footer {
+    padding: 16px 20px;
+    border-top: 1px solid var(--border);
+    background: var(--panel);
+    flex-shrink: 0;
+  }
+
+  /* ── UPLOAD ZONE ── */
+  .upload-zone {
+    border: 1px dashed var(--border);
+    border-radius: 4px;
+    padding: 36px 20px;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s, color 0.2s;
+    position: relative;
+    background: var(--teal-glow);
+    margin-bottom: 12px;
+  }
+  .upload-zone:hover {
+    border-color: var(--teal);
+    background: var(--teal-dim);
+    color: var(--teal);
+  }
+  .upload-zone input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+  }
+  .upload-icon { font-size: 1.8rem; display: block; margin-bottom: 8px; }
+  .upload-label { display: block; margin-bottom: 4px; }
+  .upload-sub { font-size: 0.62rem; color: var(--text-dim); }
+
+  /* ── RESULT BLOCKS ── */
+  .result-block {
+    background: var(--teal-glow);
+    border: 1px solid var(--border);
+    border-left: 2px solid var(--teal);
+    border-radius: 4px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    font-size: 0.8rem;
+    line-height: 1.75;
+    color: var(--text);
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .result-tag {
+    display: block;
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 8px;
+  }
+  .match-ok {
+    background: rgba(0,229,180,0.07);
+    border: 1px solid rgba(0,229,180,0.3);
+    border-radius: 4px;
+    padding: 10px 14px;
+    color: var(--teal);
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+  }
+  .match-fail {
+    background: rgba(255,77,141,0.06);
+    border: 1px solid rgba(255,77,141,0.25);
+    border-radius: 4px;
+    padding: 10px 14px;
+    color: var(--pink);
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+  }
+  .idle-msg {
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-align: center;
+    margin-top: 48px;
+    line-height: 2.2;
+  }
+
+  /* ── CHAT ── */
+  .msg { margin-bottom: 18px; }
+  .msg-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 5px;
+    font-size: 0.66rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--teal);
+  }
+  .msg-meta .dot-s {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--teal);
+    box-shadow: 0 0 5px var(--teal);
+  }
+  .msg-meta.you-meta { justify-content: flex-end; color: var(--pink); }
+  .msg-meta.you-meta .dot-s { background: var(--pink); box-shadow: 0 0 5px var(--pink); }
+
+  .bubble {
+    border-radius: 4px;
+    padding: 12px 15px;
+    font-size: 0.82rem;
+    line-height: 1.75;
+    max-width: 90%;
+  }
+  .bubble-naif {
+    background: var(--teal-glow);
+    border: 1px solid var(--border);
+    border-left: 2px solid var(--teal);
+    color: var(--text);
+  }
+  .bubble-you {
+    background: rgba(255,77,141,0.05);
+    border: 1px solid rgba(255,77,141,0.18);
+    border-right: 2px solid var(--pink);
+    color: var(--text);
+    margin-left: auto;
+    text-align: right;
+  }
+
+  /* ── INPUT ── */
+  .input-row { display: flex; gap: 10px; }
+  .term-input {
+    flex: 1;
+    background: rgba(0,229,180,0.04);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--teal);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.82rem;
+    padding: 10px 14px;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    caret-color: var(--teal);
+  }
+  .term-input:focus {
+    border-color: var(--teal);
+    background: var(--teal-dim);
+  }
+  .term-input::placeholder { color: var(--text-dim); }
+
+  .btn-send, .btn-analyze {
+    background: transparent;
+    border: 1px solid var(--teal);
+    border-radius: 4px;
+    color: var(--teal);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+  }
+  .btn-analyze { width: 100%; padding: 11px; }
+  .btn-send:hover, .btn-analyze:hover {
+    background: var(--teal-dim);
+    box-shadow: 0 0 16px rgba(0,229,180,0.18);
+  }
+  .btn-send:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+
+  /* ── STREAMING CURSOR ── */
+  .streaming-cursor::after {
+    content: '▌';
+    color: var(--teal);
+    animation: blink 0.65s step-start infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* ── TYPING DOTS ── */
+  .typing-dots { display: flex; align-items: center; gap: 5px; padding: 4px 0; }
+  .typing-dots span {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--teal);
+    opacity: 0.5;
+    animation: tdot 1.2s infinite ease-in-out;
+  }
+  .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes tdot {
+    0%, 80%, 100% { transform: scale(0.6); opacity: 0.3; }
+    40%           { transform: scale(1);   opacity: 1; }
+  }
+
+  /* ── SCANLINE ── */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg, transparent, transparent 2px,
+      rgba(0,0,0,0.05) 2px, rgba(0,0,0,0.05) 4px
+    );
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  /* ════════════════════════════════════════
+     SCAN LOADER OVERLAY
+     ════════════════════════════════════════ */
+  #scan-overlay {
+    display: none;
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 13, 13, 0.96);
+    z-index: 100;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+  }
+  #scan-overlay.active { display: flex; }
+
+  /* Hexagon scanner */
+  .hex-scanner {
+    position: relative;
+    width: 110px;
+    height: 110px;
+  }
+  .hex-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1.5px solid transparent;
+  }
+  .hex-ring-1 {
+    border-top-color: var(--teal);
+    border-right-color: var(--teal);
+    animation: spin 1.4s linear infinite;
+    box-shadow: 0 0 12px rgba(0,229,180,0.3);
+  }
+  .hex-ring-2 {
+    inset: 14px;
+    border-bottom-color: var(--teal);
+    border-left-color: var(--teal);
+    animation: spin 1.0s linear infinite reverse;
+    opacity: 0.7;
+  }
+  .hex-ring-3 {
+    inset: 28px;
+    border-top-color: rgba(0,229,180,0.5);
+    border-right-color: rgba(0,229,180,0.5);
+    animation: spin 1.8s linear infinite;
+    opacity: 0.5;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Cross-hair center */
+  .hex-center {
+    position: absolute;
+    inset: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hex-center::before,
+  .hex-center::after {
+    content: '';
+    position: absolute;
+    background: var(--teal);
+    box-shadow: 0 0 6px var(--teal);
+    border-radius: 1px;
+  }
+  .hex-center::before { width: 1px; height: 100%; }
+  .hex-center::after  { width: 100%; height: 1px; }
+
+  /* Corner brackets on the panel */
+  .scan-bracket {
+    position: absolute;
+    width: 18px; height: 18px;
+    border-color: var(--teal);
+    border-style: solid;
+    opacity: 0.6;
+  }
+  .scan-bracket.tl { top: 14px; left: 14px; border-width: 2px 0 0 2px; }
+  .scan-bracket.tr { top: 14px; right: 14px; border-width: 2px 2px 0 0; }
+  .scan-bracket.bl { bottom: 80px; left: 14px; border-width: 0 0 2px 2px; }
+  .scan-bracket.br { bottom: 80px; right: 14px; border-width: 0 2px 2px 0; }
+
+  /* Horizontal sweep line */
+  .scan-line {
+    position: absolute;
+    left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--teal), transparent);
+    box-shadow: 0 0 14px 2px rgba(0,229,180,0.4);
+    animation: sweep 2.2s ease-in-out infinite;
+    top: 0;
+  }
+  @keyframes sweep {
+    0%   { top: 10%; opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 1; }
+    100% { top: 85%; opacity: 0; }
+  }
+
+  /* Status text block */
+  .scan-status {
+    text-align: center;
+    font-family: 'Share Tech Mono', monospace;
+  }
+  .scan-label {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    color: var(--teal);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    animation: flicker 3s ease-in-out infinite;
+  }
+  @keyframes flicker {
+    0%,100% { opacity: 1; }
+    92%     { opacity: 1; }
+    93%     { opacity: 0.2; }
+    94%     { opacity: 1; }
+    96%     { opacity: 0.4; }
+    97%     { opacity: 1; }
+  }
+
+  /* Animated log lines */
+  .scan-log {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    line-height: 2;
+    height: 90px;
+    overflow: hidden;
+    position: relative;
+  }
+  .scan-log-line {
+    display: block;
+    opacity: 0;
+    transform: translateX(-8px);
+    animation: logappear 0.4s ease forwards;
+    white-space: nowrap;
+  }
+  .scan-log-line .ok  { color: var(--teal); }
+  .scan-log-line .err { color: var(--pink); }
+  @keyframes logappear {
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  /* Progress bar */
+  .scan-progress-wrap {
+    width: 220px;
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 6px;
+  }
+  .scan-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--teal);
+    box-shadow: 0 0 8px var(--teal);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+  }
+  .scan-progress-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    margin-top: 6px;
+    text-align: right;
+    width: 220px;
+  }
+
+  @media (max-width: 680px) {
+    .main { grid-template-columns: 1fr; grid-template-rows: 50vh 50vh; height: auto; }
+    .panel { border-right: none; border-bottom: 1px solid var(--border); }
+    .topbar-meta { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-logo"><span class="dot"></span>NAIF</div>
+  <div class="topbar-meta">
+    <span>SYS ONLINE</span><span>MEDI CORE</span><span>RAG ACTIVE</span>
+  </div>
+  <div class="topbar-status"><span class="dot-sm"></span>OPERATIONAL</div>
+</nav>
+
+<div class="main">
+
+  <!-- LEFT: OCR -->
+  <div class="panel" id="ocr-panel">
+
+    <!-- ══ SCAN OVERLAY ══ -->
+    <div id="scan-overlay">
+      <!-- corner brackets -->
+      <div class="scan-bracket tl"></div>
+      <div class="scan-bracket tr"></div>
+      <div class="scan-bracket bl"></div>
+      <div class="scan-bracket br"></div>
+      <!-- sweep line -->
+      <div class="scan-line"></div>
+
+      <!-- spinner -->
+      <div class="hex-scanner">
+        <div class="hex-ring hex-ring-1"></div>
+        <div class="hex-ring hex-ring-2"></div>
+        <div class="hex-ring hex-ring-3"></div>
+        <div class="hex-center"></div>
+      </div>
+
+      <!-- status -->
+      <div class="scan-status">
+        <div class="scan-label" id="scan-label">INITIALIZING SCAN</div>
+        <div class="scan-log" id="scan-log"></div>
+        <div class="scan-progress-wrap">
+          <div class="scan-progress-bar" id="scan-bar"></div>
+        </div>
+        <div class="scan-progress-label" id="scan-pct">0%</div>
+      </div>
+    </div>
+    <!-- ══ END OVERLAY ══ -->
+
+    <div class="panel-header">PRESCRIPTION OCR // IMAGE ANALYSIS</div>
+
+    <div class="panel-body">
+      {% if prescription_result %}
+        {% if prescription_result.match %}
+          <div class="match-ok">✓ MATCHED: {{ prescription_result.match.title() }} &nbsp;|&nbsp; CONFIDENCE: {{ prescription_result.score }}%</div>
+        {% else %}
+          <div class="match-fail">✗ NO MATCH FOUND &nbsp;|&nbsp; BEST SCORE: {{ prescription_result.score }}%</div>
+        {% endif %}
+      {% endif %}
+
+      {% if extracted_text %}
+        <div class="result-block"><span class="result-tag">// extracted text</span>{{ extracted_text }}</div>
+      {% endif %}
+
+      {% if prescription_result and prescription_result.match %}
+        <div class="result-block"><span class="result-tag">// medicine info</span>{{ medicine_info }}</div>
+        <div class="result-block"><span class="result-tag">// ai explanation</span>{{ prescription_result.explanation }}</div>
+      {% endif %}
+
+      {% if not extracted_text and not prescription_result %}
+        <div class="idle-msg">&gt; AWAITING INPUT<br><span style="font-size:0.65rem;">UPLOAD A PRESCRIPTION IMAGE TO BEGIN</span></div>
+      {% endif %}
+    </div>
+
+    <div class="panel-footer">
+      <form method="POST" enctype="multipart/form-data" id="ocr-form">
+        <div class="upload-zone">
+          <input type="file" name="prescription" accept="image/*,.pdf" required id="file-input">
+          <span class="upload-icon">⬆</span>
+          <span class="upload-label" id="upload-label-text">DROP FILE OR CLICK TO UPLOAD</span>
+          <span class="upload-sub">JPG · PNG · PDF</span>
+        </div>
+        <button type="submit" class="btn-analyze" id="analyze-btn">▶ &nbsp;ANALYZE PRESCRIPTION</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- RIGHT: STREAMING CHAT -->
+  <div class="panel">
+    <div class="panel-header">
+      NEURAL INTERFACE // CHAT STREAM
+      <span id="net-badge" style="margin-left:auto;font-size:0.6rem;letter-spacing:0.12em;padding:3px 10px;border-radius:20px;border:1px solid var(--text-dim);color:var(--text-dim);">⟳ CHECKING</span>
+    </div>
+
+    <div class="panel-body" id="chat-body">
+      <div class="msg" id="welcome-msg">
+        <div class="msg-meta"><span class="dot-s"></span> NAIF</div>
+        <div class="bubble bubble-naif">Systems online. I am NAIF Medi Core. Ask me anything about health, medications, or medical information.</div>
+      </div>
+
+      {% for chat in chat_history %}
+        <div class="msg">
+          <div class="msg-meta you-meta">YOU <span class="dot-s"></span></div>
+          <div class="bubble bubble-you">{{ chat.user }}</div>
+        </div>
+        <div class="msg">
+          <div class="msg-meta"><span class="dot-s"></span> NAIF</div>
+          <div class="bubble bubble-naif">{{ chat.bot }}</div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="panel-footer">
+      <div class="input-row">
+        <input
+          type="text"
+          id="chat-input"
+          class="term-input"
+          placeholder="> TYPE YOUR QUERY..."
+          autocomplete="off"
+          onkeydown="if(event.key==='Enter') sendMessage()"
+        />
+        <button id="send-btn" class="btn-send" onclick="sendMessage()">SEND</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ════════════════════════════════════════
+   SCAN LOADER
+   ════════════════════════════════════════ */
+const overlay   = document.getElementById('scan-overlay');
+const scanLabel = document.getElementById('scan-label');
+const scanLog   = document.getElementById('scan-log');
+const scanBar   = document.getElementById('scan-bar');
+const scanPct   = document.getElementById('scan-pct');
+
+const LOG_SEQUENCES = [
+  { pct: 8,  label: 'LOADING IMAGE DATA',       line: '<span class="ok">[OK]</span> Image buffer acquired' },
+  { pct: 18, label: 'PREPROCESSING PIXELS',     line: '<span class="ok">[OK]</span> Contrast enhancement applied' },
+  { pct: 30, label: 'SHARPENING FILTER',        line: '<span class="ok">[OK]</span> Edge sharpening complete' },
+  { pct: 42, label: 'RUNNING TrOCR ENGINE',     line: '<span class="ok">[~~]</span> Neural OCR inference running...' },
+  { pct: 58, label: 'DECODING TEXT TOKENS',     line: '<span class="ok">[OK]</span> Token beam search done' },
+  { pct: 68, label: 'FUZZY MATCHING CORPUS',    line: '<span class="ok">[~~]</span> Levenshtein + RapidFuzz scoring...' },
+  { pct: 78, label: 'QUERYING MEDICINE DB',     line: '<span class="ok">[OK]</span> Database index hit' },
+  { pct: 88, label: 'GENERATING EXPLANATION',   line: '<span class="ok">[~~]</span> LLM inference via Ollama...' },
+  { pct: 96, label: 'FINALIZING RESULTS',       line: '<span class="ok">[OK]</span> Output assembled' },
+];
+
+let logTimer = null;
+let pctTimer = null;
+let logStep  = 0;
+let currentPct = 0;
+
+function addLogLine(html) {
+  const line = document.createElement('span');
+  line.className = 'scan-log-line';
+  line.innerHTML = html;
+  scanLog.appendChild(line);
+  // Keep only last 4 lines visible
+  while (scanLog.children.length > 4) scanLog.removeChild(scanLog.firstChild);
+}
+
+function animateTo(targetPct, duration) {
+  const start = currentPct;
+  const startTime = performance.now();
+  function step(now) {
+    const t = Math.min((now - startTime) / duration, 1);
+    const val = Math.round(start + (targetPct - start) * t);
+    scanBar.style.width = val + '%';
+    scanPct.textContent = val + '%';
+    currentPct = val;
+    if (t < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+function startScanAnimation() {
+  logStep = 0;
+  currentPct = 0;
+  scanLog.innerHTML = '';
+  scanBar.style.width = '0%';
+  scanPct.textContent = '0%';
+  scanLabel.textContent = 'INITIALIZING SCAN';
+
+  function runStep() {
+    if (logStep >= LOG_SEQUENCES.length) return;
+    const s = LOG_SEQUENCES[logStep];
+    scanLabel.textContent = s.label;
+    addLogLine(s.line);
+    animateTo(s.pct, 600);
+    logStep++;
+    // Vary timing to feel organic
+    const delay = logStep <= 2 ? 700 : logStep <= 5 ? 900 : 1100;
+    logTimer = setTimeout(runStep, delay);
+  }
+  logTimer = setTimeout(runStep, 400);
+}
+
+function stopScanAnimation() {
+  clearTimeout(logTimer);
+  clearTimeout(pctTimer);
+}
+
+// File input label update
+document.getElementById('file-input').addEventListener('change', function() {
+  const lbl = document.getElementById('upload-label-text');
+  lbl.textContent = this.files[0] ? this.files[0].name : 'DROP FILE OR CLICK TO UPLOAD';
+});
+
+// Form submit — show overlay
+document.getElementById('ocr-form').addEventListener('submit', function() {
+  overlay.classList.add('active');
+  startScanAnimation();
+  document.getElementById('analyze-btn').disabled = true;
+});
+
+/* ════════════════════════════════════════
+   CHAT STREAMING
+   ════════════════════════════════════════ */
+const chatBody  = document.getElementById('chat-body');
+const chatInput = document.getElementById('chat-input');
+const sendBtn   = document.getElementById('send-btn');
+
+const scrollBottom = () => { chatBody.scrollTop = chatBody.scrollHeight; };
+scrollBottom();
+
+function appendMessage(text, role) {
+  const wrap   = document.createElement('div');
+  wrap.className = 'msg';
+  const meta   = document.createElement('div');
+  const dot    = document.createElement('span');
+  dot.className = 'dot-s';
+  const bubble = document.createElement('div');
+
+  if (role === 'you') {
+    meta.className = 'msg-meta you-meta';
+    meta.appendChild(document.createTextNode('YOU '));
+    meta.appendChild(dot);
+    bubble.className = 'bubble bubble-you';
+  } else {
+    meta.className = 'msg-meta';
+    meta.appendChild(dot);
+    meta.appendChild(document.createTextNode(' NAIF'));
+    bubble.className = 'bubble bubble-naif';
+  }
+
+  bubble.textContent = text;
+  wrap.appendChild(meta);
+  wrap.appendChild(bubble);
+  chatBody.appendChild(wrap);
+  scrollBottom();
+  return bubble;
+}
+
+function showTyping() {
+  const wrap = document.createElement('div');
+  wrap.className = 'msg';
+  wrap.id = 'typing-indicator';
+  const meta = document.createElement('div');
+  meta.className = 'msg-meta';
+  const dot = document.createElement('span');
+  dot.className = 'dot-s';
+  meta.appendChild(dot);
+  meta.appendChild(document.createTextNode(' NAIF'));
+  const bubble = document.createElement('div');
+  bubble.className = 'bubble bubble-naif';
+  bubble.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
+  wrap.appendChild(meta);
+  wrap.appendChild(bubble);
+  chatBody.appendChild(wrap);
+  scrollBottom();
+}
+
+function hideTyping() {
+  document.getElementById('typing-indicator')?.remove();
+}
+
+function resetInput() {
+  chatInput.disabled  = false;
+  sendBtn.disabled    = false;
+  sendBtn.textContent = 'SEND';
+  chatInput.focus();
+}
+
+/* ════════════════════════════════════════
+   INTERNET STATUS BADGE
+   ════════════════════════════════════════ */
+const netBadge = document.getElementById('net-badge');
+
+function updateNetBadge(online) {
+  if (online) {
+    netBadge.textContent = '🌐 ONLINE';
+    netBadge.style.borderColor = 'var(--teal)';
+    netBadge.style.color = 'var(--teal)';
+  } else {
+    netBadge.textContent = '📚 LOCAL RAG';
+    netBadge.style.borderColor = 'var(--pink)';
+    netBadge.style.color = 'var(--pink)';
+  }
+}
+
+function checkInternet() {
+  fetch('/internet_status')
+    .then(r => r.json())
+    .then(d => updateNetBadge(d.online))
+    .catch(() => updateNetBadge(false));
+}
+checkInternet();
+setInterval(checkInternet, 15000); // Re-check every 15 s
+
+/* SOURCE MODE LABEL */
+const SOURCE_LABELS = {
+  web:          { icon: '🌐', text: 'WEB SEARCH', color: 'var(--teal)' },
+  rag:          { icon: '📚', text: 'LOCAL RAG',  color: '#a78bfa' },
+  rag_fallback: { icon: '📚', text: 'LOCAL RAG (web unavailable)', color: '#facc15' },
+};
+
+function appendSourceBadge(bubble, mode) {
+  const info = SOURCE_LABELS[mode];
+  if (!info) return;
+  const badge = document.createElement('span');
+  badge.style.cssText = `display:block;margin-top:8px;font-size:0.6rem;letter-spacing:0.14em;color:${info.color};opacity:0.75;`;
+  badge.textContent = `${info.icon} SOURCE: ${info.text}`;
+  bubble.appendChild(badge);
+}
+
+function sendMessage() {
+  const text = chatInput.value.trim();
+  if (!text) return;
+
+  chatInput.value    = '';
+  chatInput.disabled = true;
+  sendBtn.disabled   = true;
+  sendBtn.textContent = '...';
+
+  appendMessage(text, 'you');
+  showTyping();
+
+  const botBubble = appendMessage('', 'naif');
+  botBubble.style.display = 'none';
+  botBubble.classList.add('streaming-cursor');
+
+  let accumulated = '';
+  let sourceModeReceived = null;
+
+  const evtSource = new EventSource('/chat_stream?message=' + encodeURIComponent(text));
+
+  evtSource.onmessage = function(e) {
+    let data;
+    try { data = JSON.parse(e.data); } catch { return; }
+
+    if (data.error) {
+      hideTyping();
+      botBubble.style.display = '';
+      botBubble.classList.remove('streaming-cursor');
+      botBubble.textContent = '⚠️ ' + data.error;
+      evtSource.close();
+      resetInput();
+      return;
+    }
+
+    // Capture source mode from the first event
+    if (data.source_mode && !sourceModeReceived) {
+      sourceModeReceived = data.source_mode;
+      return;
+    }
+
+    if (data.token) {
+      if (accumulated === '') {
+        hideTyping();
+        botBubble.style.display = '';
+        // Create a text node we'll keep updating
+        botBubble._textNode = document.createTextNode('');
+        botBubble.appendChild(botBubble._textNode);
+      }
+      accumulated += data.token;
+      if (botBubble._textNode) {
+        botBubble._textNode.textContent = accumulated;
+      } else {
+        botBubble.textContent = accumulated;
+      }
+      scrollBottom();
+    }
+
+    if (data.done) {
+      botBubble.classList.remove('streaming-cursor');
+      // Append source badge after response is done
+      if (sourceModeReceived) appendSourceBadge(botBubble, sourceModeReceived);
+      evtSource.close();
+      resetInput();
+    }
+  };
+
+  evtSource.onerror = function() {
+    hideTyping();
+    botBubble.style.display = '';
+    botBubble.classList.remove('streaming-cursor');
+    if (!accumulated) botBubble.textContent = '⚠️ Connection error. Is Ollama running?';
+    evtSource.close();
+    resetInput();
+  };
+}
+</script>
+
+</body>
+</html>

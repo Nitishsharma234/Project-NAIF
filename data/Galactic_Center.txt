@@ -1,0 +1,77 @@
+The Galactic Center is the barycenter of the Milky Way and a corresponding point on the rotational axis of the galaxy.[1][2] Its central massive object is a supermassive black hole of about 4 million solar masses, which is called Sagittarius A*,[3][4][5] part of which is a very compact radio source arising from a bright spot in the region around the black hole, near the event horizon.[6] The Galactic Center is approximately 8 kiloparsecs (26,000 ly) away from Earth[3] in the direction of the constellations Sagittarius, Ophiuchus, and Scorpius, where the Milky Way appears brightest, visually close to the Butterfly Cluster (M6) or the star Lambda Scorpii, south to the Pipe Nebula.
+
+There are around 10 million stars within one parsec of the Galactic Center, dominated by red giants, with a significant population of massive supergiants and Wolf–Rayet stars from star formation in the region around 1 million years ago. The core stars are a small part within the much wider central region, called the galactic bulge.
+
+Discovery
+Duration: 2 minutes and 37 seconds.2:37
+This pan video gives a closer look at a huge image of the central parts of the Milky Way made by combining thousands of images from ESO's VISTA telescope on Paranal in Chile and compares it with the view in visible light. Because VISTA has a camera sensitive to infrared light, it can see through much of the dust blocking the view in visible light, although many more opaque dust filaments still show up well in this picture.
+Because of interstellar dust along the line of sight, the Galactic Center cannot be studied at visible, ultraviolet, or soft (low-energy) X-ray wavelengths. The available information about the Galactic Center comes from observations at gamma ray, hard (high-energy) X-ray, infrared, submillimetre, and radio wavelengths.
+
+Immanuel Kant stated in Universal Natural History and Theory of the Heavens (1755) that a large star was at the center of the Milky Way galaxy, and that Sirius might be the star.[7] Harlow Shapley stated in 1918 that the halo of globular clusters surrounding the Milky Way seemed to be centered on the star swarms in the constellation of Sagittarius, but the dark molecular clouds in the area blocked the view for optical astronomy.[8]
+
+In the early 1940s Walter Baade at Mount Wilson Observatory took advantage of wartime blackout conditions in nearby Los Angeles, to conduct a search for the center with the 100-inch (250 cm) Hooker Telescope. He found that near the star Alnasl (Gamma Sagittarii), there is a one-degree-wide void in the interstellar dust lanes, which provides a relatively clear view of the swarms of stars around the nucleus of the Milky Way galaxy.[9] This gap has been known as Baade's Window ever since.[10]
+
+At Dover Heights in Sydney, Australia, a team of radio astronomers from the Division of Radiophysics at the CSIRO, led by Joseph Lade Pawsey, used sea interferometry to discover some of the first interstellar and intergalactic radio sources, including Taurus A, Virgo A and Centaurus A. By 1954 they had built an 80-foot (24 m) fixed dish antenna and used it to make a detailed study of an extended, extremely powerful belt of radio emission that was detected in Sagittarius. They named an intense point-source near the center of this belt Sagittarius A, and realised that it was located at the very center of the Galaxy, despite being some 32 degrees south-west of the conjectured Galactic Center of the time.[11]
+
+In 1958 the International Astronomical Union (IAU) decided to adopt the position of Sagittarius A as the true zero coordinate point for the system of galactic latitude and longitude.[12] In the equatorial coordinate system the location is: RA 17h 45m 40.04s, Dec −29° 00′ 28.1″ (J2000 epoch).
+
+In July 2022, astronomers reported the discovery of massive amounts of prebiotic molecules, including some associated with RNA, in the Galactic Center of the Milky Way galaxy.[13][14]
+
+Distance to the Galactic Center
+Duration: 36 seconds.0:36
+Animation of a barred galaxy like the Milky Way showing the presence of an X-shaped bulge. The X-shape extends to about one half of the bar radius. It is directly visible when the bar is seen from the side, but when the viewer is close to the long axis of the bar it cannot be seen directly and its presence can only be inferred from the distribution of brightnesses of stars along a given direction.
+The exact distance between the Solar System and the Galactic Center is not certain,[15] although estimates since 2000 have remained within the range 24–28.4 kilolight-years (7.4–8.7 kiloparsecs).[16] The latest estimates from geometric-based methods and standard candles yield the following distances to the Galactic Center:
+
+7.4±0.2(stat) ± 0.2(syst) or 7.4±0.3 kpc (≈24±1 kly)[16]
+7.62±0.32 kpc (≈24.8±1 kly)[17]
+7.7±0.7 kpc (≈25.1±2.3 kly)[18]
+7.94 or 8.0±0.5 kpc (≈26±1.6 kly)[19][20][21]
+7.98±0.15(stat) ± 0.20(syst) or 8.0±0.25 kpc (≈26±0.8 kly)[22]
+8.33±0.35 kpc (≈27±1.1 kly)[5]
+8.0±0.3 kpc (≈25.96±0.98 kly)[23]
+8.7±0.5 kpc (≈28.4±1.6 kly)[24]
+8.122±0.031 kpc (≈26.49±0.1 kly)[25]
+8.178±0.013(stat) ± 0.022(syst) kpc (≈26.67±0.1 kly)[3]
+An accurate determination of the distance to the Galactic Center as established from variable stars (e.g. RR Lyrae variables) or standard candles (e.g. red-clump stars) is hindered by numerous effects, which include an ambiguous reddening law, a bias for smaller values of the distance to the Galactic Center because of a preferential sampling of stars toward the near side of the Galactic bulge owing to interstellar extinction, and an uncertainty in characterizing how a mean distance to a group of variable stars found in the direction of the Galactic bulge relates to the distance to the Galactic Center.[26][27]
+
+The nature of the Milky Way's bar, which extends across the Galactic Center, is also actively debated, with estimates for its half-length and orientation spanning between 1–5 kpc (short or a long bar) and 10–50°.[24][26][28] Certain authors advocate that the Milky Way features two distinct bars, one nestled within the other.[29] The bar is delineated by red-clump stars (see also red giant); however, RR Lyrae variables do not trace a prominent Galactic bar.[26][30][31] The bar may be surrounded by a ring called the 5-kpc ring that contains a large fraction of the molecular hydrogen present in the Milky Way, and most of the Milky Way's star formation activity. Viewed from the Andromeda Galaxy, it would be the brightest feature of the Milky Way.[32]
+
+Supermassive black hole
+
+The supermassive black hole Sagittarius A*, imaged by the Event Horizon Telescope[33]
+The complex astronomical radio source Sagittarius A appears to be located almost exactly at the Galactic Center and contains an intense compact radio source, Sagittarius A*, which coincides with a supermassive black hole at the center of the Milky Way. Accretion of gas onto the black hole, probably involving an accretion disk around it, would release energy to power the radio source, itself much larger than the black hole.
+
+A study in 2008 which linked radio telescopes in Hawaii, Arizona and California (Very-long-baseline interferometry) measured the diameter of Sagittarius A* to be 44 million kilometres (~0.294 AU).[4][34] For comparison, the radius of Earth's orbit around the Sun is about 150 million kilometres (1.0 AU), whereas the distance of Mercury from the Sun at closest approach (perihelion) is 46 million kilometres (~0.307 AU). Thus, the diameter of the radio source is slightly less than the distance from Mercury to the Sun.
+
+Scientists at the Max Planck Institute for Extraterrestrial Physics in Germany using Chilean telescopes have confirmed the existence of a supermassive black hole at the Galactic Center, on the order of 4.3 million solar masses.[5] Later studies have estimated a mass of 3.7 million[35][36] or 4.1 million solar masses.[25]
+
+On 5 January 2015, NASA reported observing an X-ray flare 400 times brighter than usual, a record-breaker, from Sagittarius A*. The unusual event may have been caused by the breaking apart of an asteroid falling into the black hole or by the entanglement of magnetic field lines within gas flowing into Sagittarius A*, according to astronomers.[37]
+
+
+There is a supermassive black hole in the bright white area to the right of the center of this wide (scrollable) image. This composite photograph covers about half of a degree.
+Gamma- and X-ray emitting Fermi bubbles
+Galactic gamma- and X-ray bubbles
+
+Duration: 1 minute and 33 seconds.1:33
+Gamma- and X-ray bubbles at the Milky Way galaxy center: Top: illustration; Bottom: video.
+In November 2010, it was announced that two large elliptical lobe structures of energetic plasma, termed bubbles, which emit gamma- and X-rays, were detected astride the Milky Way galaxy's core.[38] Termed Fermi or eRosita bubbles,[39] they extend up to about 25,000 light years above and below the Galactic Center.[38] The galaxy's diffuse gamma-ray fog hampered prior observations, but the discovery team led by D. Finkbeiner, building on research by G. Dobler, worked around this problem.[38] The 2014 Bruno Rossi Prize went to Tracy Slatyer, Douglas Finkbeiner, and Meng Su "for their discovery, in gamma rays, of the large unanticipated Galactic structure called the Fermi bubbles".[40]
+
+The origin of the bubbles is being researched.[41][42] The bubbles are connected and seemingly coupled, via energy transport, to the galactic core by columnar structures of energetic plasma termed chimneys.[43] In 2020, for the first time, the lobes were seen in visible light[44] and optical measurements were made.[45] By 2022, detailed computer simulations further confirmed that the bubbles were caused by the Sagittarius A* black hole.[46][39]
+
+Stellar population
+
+The Galactic Center of the Milky Way and a meteor
+The central cubic parsec around Sagittarius A* contains around 10 million stars.[47] Although most of them are old red giant stars, the Galactic Center is also rich in massive stars. More than 100 OB and Wolf–Rayet stars have been identified there so far.[48] They seem to have all been formed in a single star formation event a few million years ago. The existence of these relatively young stars was a surprise to experts, who expected the tidal forces from the central black hole to prevent their formation.[49]
+
+This paradox of youth is even stronger for stars that are on very tight orbits around Sagittarius A*, such as S2 and S0-102. The scenarios invoked to explain this formation involve either star formation in a massive star cluster offset from the Galactic Center that would have migrated to its current location once formed, or star formation within a massive, compact gas accretion disk around the central black-hole. Current evidence favors the latter theory, as formation through a large accretion disk is more likely to lead to the observed discrete edge of the young stellar cluster at roughly 0.5 parsec.[50] Most of these 100 young, massive stars seem to be concentrated within one or two disks, rather than randomly distributed within the central parsec.[51][52] This observation however does not allow definite conclusions to be drawn at this point.
+
+Star formation does not seem to be occurring currently at the Galactic Center, although the Circumnuclear Disk of molecular gas that orbits the Galactic Center at two parsecs seems a fairly favorable site for star formation. Work presented in 2002 by Antony Stark and Chris Martin mapping the gas density in a 400-light-year region around the Galactic Center has revealed an accumulating ring with a mass several million times that of the Sun and near the critical density for star formation.
+
+They predict that in approximately 200 million years, there will be an episode of starburst in the Galactic Center, with many stars forming rapidly and undergoing supernovae at a hundred times the current rate. This starburst may also be accompanied by the formation of galactic relativistic jets, as matter falls into the central black hole. It is thought that the Milky Way undergoes a starburst of this sort every 500 million years.
+
+In addition to the paradox of youth, there is a "conundrum of old age" associated with the distribution of the old stars at the Galactic Center. Theoretical models had predicted that the old stars—which far outnumber young stars—should have a steeply-rising density near the black hole, a so-called Bahcall–Wolf cusp. Instead, it was discovered in 2009 that the density of the old stars peaks at a distance of roughly 0.5 parsec from Sgr A*, then falls inward: instead of a dense cluster, there is a "hole", or core, around the black hole.[53]
+
+Several suggestions have been put forward to explain this puzzling observation, but none is completely satisfactory.[54][55] For instance, although the black hole would eat stars near it, creating a region of low density, this region would be much smaller than a parsec. Because the observed stars are a fraction of the total number, it is theoretically possible that the overall stellar distribution is different from what is observed, although no plausible models of this sort have been proposed yet.
+
+Stellar black holes
+The galactic center is suspected to have a large population of stellar mass black holes. There are probably around 25,000 stellar mass black holes in the central parsecs of the galactic center as a result of dynamical friction and migration.[56][57] These black holes have a major effect on the stellar population of the galactic center and the S cluster. They limit the number of massive O-type stars through stellar collisions.[58]

@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NAIF — ARCH COMMANDER</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg:     #080c10;
+    --surf:   #0d1318;
+    --s2:     #121920;
+    --border: rgba(99,219,184,0.15);
+    --accent: #63dbb8;
+    --a2:     #f06a6a;
+    --a3:     #f0c56a;
+    --text:   #c8e6df;
+    --dim:    #4a6b62;
+    --glow:   rgba(99,219,184,0.18);
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; cursor:none !important; }
+
+/* ── CUSTOM CURSOR ── */
+#cursor {
+    position:fixed; pointer-events:none; z-index:9999;
+    width:8px; height:8px; border-radius:50%;
+    background:var(--accent);
+    box-shadow:0 0 10px var(--accent), 0 0 20px rgba(99,219,184,.35);
+    transform:translate(-50%,-50%);
+    transition:width .12s, height .12s, background .12s;
+}
+#cursor-ring {
+    position:fixed; pointer-events:none; z-index:9998;
+    width:28px; height:28px; border-radius:50%;
+    border:1px solid rgba(99,219,184,.45);
+    transform:translate(-50%,-50%);
+}
+#cursor-cross-h {
+    position:fixed; pointer-events:none; z-index:9997;
+    height:1px; width:100vw; top:0; left:0;
+    background:rgba(99,219,184,.06);
+    transform:translateY(-50%);
+}
+#cursor-cross-v {
+    position:fixed; pointer-events:none; z-index:9997;
+    width:1px; height:100vh; left:0; top:0;
+    background:rgba(99,219,184,.06);
+    transform:translateX(-50%);
+}
+body.clicking  #cursor      { width:5px; height:5px; background:var(--a2); box-shadow:0 0 12px var(--a2); }
+body.clicking  #cursor-ring { width:40px; height:40px; border-color:var(--a2); opacity:.5; }
+body.hovering  #cursor      { width:12px; height:12px; background:transparent; border:1.5px solid var(--accent); box-shadow:none; }
+body.hovering  #cursor-ring { width:38px; height:38px; border-color:var(--accent); opacity:.9; }
+
+/* ── BODY ── */
+body {
+    background:var(--bg);
+    font-family:'Space Mono', monospace;
+    color:var(--text);
+    height:100vh;
+    display:flex; flex-direction:column;
+    overflow:hidden;
+    text-transform:uppercase;
+}
+
+/* ── TOPBAR ── */
+.topbar {
+    flex-shrink:0; height:52px; padding:0 32px;
+    display:flex; align-items:center; gap:14px;
+    border-bottom:1px solid var(--border);
+    background:var(--surf);
+}
+.logo { font-family:'Syne',sans-serif; font-weight:800; font-size:20px;
+        letter-spacing:6px; color:var(--accent); text-shadow:0 0 18px var(--glow); }
+.t-sep { color:var(--dim); font-size:10px; }
+.t-sub { font-family:'Syne',sans-serif; font-size:10px; font-weight:700;
+         letter-spacing:4px; color:var(--dim); flex:1; }
+.s-wrap { display:flex; align-items:center; gap:8px; }
+.s-dot  { width:7px; height:7px; border-radius:50%; background:var(--accent);
+          box-shadow:0 0 8px var(--accent); animation:pulse 2s ease-in-out infinite; }
+.s-txt  { font-size:9px; color:var(--dim); letter-spacing:2px; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+/* ── BRIDGE ── */
+.bridge {
+    flex:1;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr;
+    gap:14px;
+    padding:18px 28px 20px;
+    overflow:hidden;
+}
+
+/* ── TOP ROW wrapper ── */
+.top-row {
+    grid-column: 1 / 3;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:14px;
+}
+
+/* shared panel base */
+.panel {
+    background:var(--surf); border:1px solid var(--border);
+    position:relative; overflow:hidden;
+}
+.panel::after {
+    content:''; position:absolute; inset:0; pointer-events:none;
+    background:
+        linear-gradient(var(--accent),var(--accent)) top    left  / 10px 1px no-repeat,
+        linear-gradient(var(--accent),var(--accent)) top    left  / 1px 10px no-repeat,
+        linear-gradient(var(--accent),var(--accent)) top    right / 10px 1px no-repeat,
+        linear-gradient(var(--accent),var(--accent)) top    right / 1px 10px no-repeat,
+        linear-gradient(var(--accent),var(--accent)) bottom left  / 10px 1px no-repeat,
+        linear-gradient(var(--accent),var(--accent)) bottom left  / 1px 10px no-repeat,
+        linear-gradient(var(--accent),var(--accent)) bottom right / 10px 1px no-repeat,
+        linear-gradient(var(--accent),var(--accent)) bottom right / 1px 10px no-repeat;
+    opacity:.35;
+}
+.p-label {
+    font-size:7px; letter-spacing:3px; color:var(--dim);
+    display:flex; align-items:center; gap:8px;
+    margin-bottom:10px;
+}
+.live-pill {
+    font-size:6px; letter-spacing:2px; color:var(--accent);
+    border:1px solid rgba(99,219,184,.28); padding:1px 5px;
+    animation:blink 1.4s ease-in-out infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
+
+/* ── ROUND CLOCK ── */
+.clock-panel {
+    padding:18px 16px 16px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;
+}
+.clock-ring-wrap {
+    position:relative;
+    width:140px; height:140px;
+    flex-shrink:0;
+}
+.clock-svg {
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    transform:rotate(-90deg);
+}
+.clock-track {
+    fill:none; stroke:rgba(99,219,184,.08); stroke-width:3;
+}
+.clock-arc-h {
+    fill:none; stroke:var(--accent); stroke-width:2;
+    stroke-linecap:round;
+    filter:drop-shadow(0 0 4px var(--accent));
+    transition:stroke-dashoffset .5s cubic-bezier(.4,0,.2,1);
+}
+.clock-arc-m {
+    fill:none; stroke:rgba(99,219,184,.4); stroke-width:1.5;
+    stroke-linecap:round;
+    transition:stroke-dashoffset .5s cubic-bezier(.4,0,.2,1);
+}
+.clock-arc-s {
+    fill:none; stroke:rgba(240,197,106,.5); stroke-width:1;
+    stroke-linecap:round;
+    transition:stroke-dashoffset .25s linear;
+}
+.clock-center {
+    position:absolute; inset:0;
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:center; gap:1px;
+}
+.clock-hm {
+    font-family:'Space Mono',monospace; font-size:22px; font-weight:700;
+    color:var(--accent); letter-spacing:2px; line-height:1;
+    text-shadow:0 0 16px rgba(99,219,184,.5);
+}
+.clock-sec-inner {
+    font-family:'Space Mono',monospace; font-size:10px;
+    color:rgba(240,197,106,.6); letter-spacing:1px;
+}
+.clock-meta {
+    width:100%; display:flex; flex-direction:column; align-items:center; gap:3px;
+}
+.clock-day {
+    font-family:'Syne',sans-serif; font-size:10px; font-weight:700;
+    letter-spacing:3px; color:var(--text);
+}
+.clock-dmy { font-size:7px; letter-spacing:2px; color:var(--dim); }
+
+/* tick marks */
+.tick-mark {
+    stroke:rgba(99,219,184,.2); stroke-width:1;
+}
+.tick-mark.major {
+    stroke:rgba(99,219,184,.4); stroke-width:1.5;
+}
+
+/* ── SMALL CALENDAR ── */
+.cal-panel {
+    padding:14px 12px;
+    display:flex; flex-direction:column; gap:8px;
+    transition:border-color .2s;
+    flex:1;
+}
+.cal-panel:hover { border-color:rgba(99,219,184,.3); }
+.cal-panel:hover .exp-hint { opacity:1; }
+.cal-hdr    { display:flex; align-items:center; justify-content:space-between; }
+.cal-month  { font-family:'Syne',sans-serif; font-size:10px; font-weight:700;
+              letter-spacing:2px; color:var(--accent); }
+.exp-hint   { font-size:7px; letter-spacing:1px; color:var(--dim);
+              opacity:0; transition:opacity .2s; }
+.mini-grid  { display:grid; grid-template-columns:repeat(7,1fr); gap:1px; }
+.mg         { font-size:7px; text-align:center; padding:3px 1px;
+              border-radius:2px; color:var(--dim); }
+.mg.hdr     { font-size:6px; letter-spacing:1px; opacity:.4; }
+.mg.d       { color:var(--text); }
+.mg.today   { background:rgba(99,219,184,.14); border:1px solid rgba(99,219,184,.38);
+              color:var(--accent); font-weight:700; }
+.mg.fest    { background:rgba(240,106,106,.1); color:var(--a2); font-weight:700; }
+
+/* ── 3×3 BUTTON GRID ── */
+.btn-zone {
+    grid-column: 1 / 3;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    grid-template-rows:repeat(3,1fr);
+    gap:12px;
+}
+.deck-btn {
+    background:var(--surf); color:var(--text);
+    border:1px solid var(--border);
+    padding:0 20px;
+    font-family:'Space Mono',monospace; font-size:11px;
+    font-weight:700; letter-spacing:2px;
+    transition:all .2s; text-align:center;
+    clip-path:polygon(0% 18%,4% 0%,96% 0%,100% 18%,100% 82%,96% 100%,86% 100%,83% 91%,17% 91%,14% 100%,4% 100%,0% 82%);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
+    position:relative;
+}
+.btn-icon { font-size:18px; line-height:1; opacity:.7; }
+.btn-label { font-size:10px; letter-spacing:2px; }
+.btn-sub {
+    font-size:7px; color:var(--dim); letter-spacing:1px;
+}
+.deck-btn:hover { background:var(--s2); border-color:var(--accent); color:var(--accent); box-shadow:0 0 18px var(--glow); }
+.deck-btn:hover .btn-icon { opacity:1; }
+.deck-btn:hover .btn-sub { color:rgba(99,219,184,.5); }
+.deck-btn.live   { border-color:rgba(99,219,184,.28); color:var(--accent); }
+.deck-btn.live .btn-icon { opacity:1; }
+.deck-btn.warn   { border-color:rgba(240,197,106,.2); }
+.deck-btn.warn:hover   { border-color:var(--a3); color:var(--a3); box-shadow:0 0 18px rgba(240,197,106,.15); }
+.deck-btn.danger { border-color:rgba(240,106,106,.2); }
+.deck-btn.danger:hover { border-color:var(--a2); color:var(--a2); box-shadow:0 0 18px rgba(240,106,106,.15); }
+
+/* ── FULL CALENDAR MODAL ── */
+.modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,.8);
+                 display:none; align-items:center; justify-content:center; z-index:5000; }
+.modal-overlay.open { display:flex; }
+.modal { background:var(--surf); border:1px solid var(--border);
+         width:940px; max-width:96vw; max-height:90vh;
+         display:flex; flex-direction:column;
+         box-shadow:0 0 60px rgba(0,0,0,.9); animation:fadeUp .18s ease; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
+.modal-hdr { flex-shrink:0; padding:16px 24px; border-bottom:1px solid var(--border);
+             display:flex; align-items:center; gap:16px; }
+.modal-title { font-family:'Syne',sans-serif; font-size:12px; font-weight:700;
+               letter-spacing:4px; color:var(--accent); flex:1; }
+.modal-close { background:none; border:1px solid var(--border); color:var(--dim);
+               font-family:'Space Mono',monospace; font-size:9px; letter-spacing:1px;
+               padding:4px 10px; transition:all .2s; border-radius:2px; }
+.modal-close:hover { border-color:var(--a2); color:var(--a2); }
+.modal-body { overflow-y:auto; padding:20px 24px 28px; }
+.modal-body::-webkit-scrollbar { width:4px; }
+.modal-body::-webkit-scrollbar-thumb { background:var(--border); }
+.year-grid  { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+.m-title    { font-family:'Syne',sans-serif; font-size:9px; font-weight:700;
+              letter-spacing:3px; color:var(--accent);
+              margin-bottom:8px; padding-bottom:6px; border-bottom:1px solid var(--border); }
+.m-title.cur { color:var(--a3); border-color:rgba(240,197,106,.3); }
+.m-grid     { display:grid; grid-template-columns:repeat(7,1fr); gap:2px; }
+.cc         { padding:5px 2px; font-size:9px; text-align:center; border-radius:2px; color:var(--dim); }
+.cc.dh      { font-size:8px; opacity:.4; }
+.cc.d       { color:var(--text); }
+.cc.d:hover { background:var(--s2); color:var(--accent); }
+.cc.tod     { background:rgba(99,219,184,.14); border:1px solid rgba(99,219,184,.38);
+              color:var(--accent); font-weight:700; }
+.cc.fst     { background:rgba(240,106,106,.12); border:1px solid rgba(240,106,106,.28);
+              color:var(--a2); font-weight:700; }
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<div id="cursor-cross-h"></div>
+<div id="cursor-cross-v"></div>
+
+<!-- TOPBAR -->
+<div class="topbar">
+    <div class="logo">NAIF</div>
+    <div class="t-sep">//</div>
+    <div class="t-sub">Arch Commander</div>
+    <div class="s-wrap">
+        <div class="s-dot"></div>
+        <div class="s-txt">Systems Online</div>
+    </div>
+</div>
+
+<!-- BRIDGE -->
+<div class="bridge">
+
+    <!-- TOP ROW: clock left, calendar right -->
+    <div class="top-row">
+
+        <!-- ROUND CLOCK -->
+        <div class="panel clock-panel">
+            <div class="p-label">System Clock <span class="live-pill">● Live</span></div>
+            <div class="clock-ring-wrap">
+                <svg class="clock-svg" viewBox="0 0 140 140">
+                    <g id="ticks"></g>
+                    <circle class="clock-track" cx="70" cy="70" r="64"/>
+                    <circle class="clock-track" cx="70" cy="70" r="57"/>
+                    <circle class="clock-track" cx="70" cy="70" r="50"/>
+                    <circle id="arcS" class="clock-arc-s" cx="70" cy="70" r="64"
+                        stroke-dasharray="402.1" stroke-dashoffset="402.1"/>
+                    <circle id="arcM" class="clock-arc-m" cx="70" cy="70" r="57"
+                        stroke-dasharray="358.1" stroke-dashoffset="358.1"/>
+                    <circle id="arcH" class="clock-arc-h" cx="70" cy="70" r="50"
+                        stroke-dasharray="314.2" stroke-dashoffset="314.2"/>
+                </svg>
+                <div class="clock-center">
+                    <div class="clock-hm" id="clockHM">00:00</div>
+                    <div class="clock-sec-inner" id="clockSecInner">00s</div>
+                </div>
+            </div>
+            <div class="clock-meta">
+                <div class="clock-day" id="clockDay">—</div>
+                <div class="clock-dmy" id="clockDMY">—</div>
+            </div>
+        </div>
+
+        <!-- SMALL CALENDAR -->
+        <div class="panel cal-panel" onclick="openCalendar()">
+            <div class="p-label">Calendar <span class="exp-hint">↗</span></div>
+            <div class="cal-hdr">
+                <div class="cal-month" id="miniMonth">—</div>
+            </div>
+            <div class="mini-grid" id="miniGrid"></div>
+        </div>
+
+    </div>
+
+    <!-- 3×3 BUTTONS -->
+    <div class="btn-zone">
+        <button class="deck-btn live" onclick="window.location.href='http://127.0.0.1:6500/'">
+            <div class="btn-icon">◆</div>
+            <div class="btn-label">AI_CHAT</div>
+            <div class="btn-sub">Online</div>
+        </button>
+        <button class="deck-btn live" onclick="window.location.href='http://localhost:5000/'">
+            <div class="btn-icon">⌥</div>
+            <div class="btn-label">AI_CODER</div>
+            <div class="btn-sub">Online</div>
+        </button>
+        <!-- <button class="deck-btn warn">
+            <div class="btn-icon">▣</div>
+            <div class="btn-label">MEDIA_STREAM</div>
+            <div class="btn-sub">Standby</div>
+        </button> -->
+        <button class="deck-btn live" onclick="window.location.href='http://10.240.193.116:5000'">
+            <div class="btn-icon">⬡</div>
+            <div class="btn-label">DOOR LOCK</div>
+            <div class="btn-sub">Standby</div>
+        </button>
+        <button class="deck-btn live" onclick="window.location.href='http://127.0.0.1:6002'">
+            <div class="btn-icon">♡</div>
+            <div class="btn-label">MED_BAY</div>
+            <div class="btn-sub">Online</div>
+        </button>
+        <!-- <button class="deck-btn">
+            <div class="btn-icon">⚙</div>
+            <div class="btn-label">ROBOTICS</div>
+            <div class="btn-sub">Standby</div>
+        </button> -->
+        <!-- <button class="deck-btn warn">
+            <div class="btn-icon">◎</div>
+            <div class="btn-label">FUTURE_PROJ</div>
+            <div class="btn-sub">Standby</div>
+        </button>
+        <button class="deck-btn">
+            <div class="btn-icon">▤</div>
+            <div class="btn-label">INTEL_FEED</div>
+            <div class="btn-sub">Standby</div>
+        </button>
+        <button class="deck-btn">
+            <div class="btn-icon">✦</div>
+            <div class="btn-label">ARCHIVE</div>
+            <div class="btn-sub">Standby</div>
+        </button>
+    </div> -->
+
+</div>
+
+<!-- FULL CALENDAR MODAL -->
+<div class="modal-overlay" id="calModal">
+    <div class="modal">
+        <div class="modal-hdr">
+            <div class="modal-title">Temporal Archive — <span id="calYear"></span></div>
+            <button class="modal-close" onclick="closeCalendar()">✕ Close</button>
+        </div>
+        <div class="modal-body">
+            <div class="year-grid" id="yearGrid"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+// ── CURSOR ────────────────────────────────────────────────
+const cur  = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+const crH  = document.getElementById('cursor-cross-h');
+const crV  = document.getElementById('cursor-cross-v');
+let mx=0, my=0, rx=0, ry=0;
+
+document.addEventListener('mousemove', e => {
+    mx=e.clientX; my=e.clientY;
+    cur.style.left=mx+'px'; cur.style.top=my+'px';
+    crH.style.top=my+'px'; crV.style.left=mx+'px';
+});
+(function lagRing() {
+    rx += (mx-rx)*0.13; ry += (my-ry)*0.13;
+    ring.style.left=rx+'px'; ring.style.top=ry+'px';
+    requestAnimationFrame(lagRing);
+})();
+document.addEventListener('mousedown', ()=>document.body.classList.add('clicking'));
+document.addEventListener('mouseup',   ()=>document.body.classList.remove('clicking'));
+document.querySelectorAll('button, .cal-panel').forEach(el=>{
+    el.addEventListener('mouseenter',()=>document.body.classList.add('hovering'));
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('hovering'));
+});
+
+// ── UTILS ─────────────────────────────────────────────────
+const pad  = n => String(n).padStart(2,'0');
+const DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const MONS = ['January','February','March','April','May','June',
+              'July','August','September','October','November','December'];
+const DHD  = ['Su','Mo','Tu','We','Th','Fr','Sa'];
+const festivals = {
+    '2026-01-26':'Republic Day','2026-03-11':'Holi',
+    '2026-08-15':'Independence Day','2026-10-02':'Gandhi Jayanti','2026-11-04':'Diwali',
+};
+
+// ── TICK MARKS ────────────────────────────────────────────
+(function buildTicks() {
+    const g = document.getElementById('ticks');
+    for(let i=0; i<60; i++) {
+        const angle = (i/60)*360;
+        const rad = angle * Math.PI/180;
+        const major = i%5===0;
+        const r1 = major ? 67 : 68;
+        const r2 = major ? 71 : 70;
+        const x1 = 70 + r1*Math.cos(rad-Math.PI/2);
+        const y1 = 70 + r1*Math.sin(rad-Math.PI/2);
+        const x2 = 70 + r2*Math.cos(rad-Math.PI/2);
+        const y2 = 70 + r2*Math.sin(rad-Math.PI/2);
+        const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+        line.setAttribute('x1',x1); line.setAttribute('y1',y1);
+        line.setAttribute('x2',x2); line.setAttribute('y2',y2);
+        line.setAttribute('class','tick-mark'+(major?' major':''));
+        g.appendChild(line);
+    }
+})();
+
+// ── CLOCK ─────────────────────────────────────────────────
+function tick() {
+    const n=new Date();
+    const h=n.getHours(), m=n.getMinutes(), s=n.getSeconds();
+
+    document.getElementById('clockHM').textContent  = `${pad(h)}:${pad(m)}`;
+    document.getElementById('clockSecInner').textContent = pad(s)+'s';
+    document.getElementById('clockDay').textContent = DAYS[n.getDay()];
+    document.getElementById('clockDMY').textContent =
+        `${MONS[n.getMonth()].slice(0,3)} ${pad(n.getDate())} · ${n.getFullYear()}`;
+
+    // arcs: dashoffset = circumference * (1 - fraction)
+    const fracS = s/60;
+    const fracM = (m + s/60)/60;
+    const fracH = ((h%12) + m/60)/12;
+
+    const circumS = 2*Math.PI*64;
+    const circumM = 2*Math.PI*57;
+    const circumH = 2*Math.PI*50;
+
+    document.getElementById('arcS').style.strokeDashoffset = circumS*(1-fracS);
+    document.getElementById('arcM').style.strokeDashoffset = circumM*(1-fracM);
+    document.getElementById('arcH').style.strokeDashoffset = circumH*(1-fracH);
+
+    // also update dasharray to match
+    document.getElementById('arcS').setAttribute('stroke-dasharray', circumS);
+    document.getElementById('arcM').setAttribute('stroke-dasharray', circumM);
+    document.getElementById('arcH').setAttribute('stroke-dasharray', circumH);
+}
+setInterval(tick,1000); tick();
+
+// ── MINI CALENDAR ─────────────────────────────────────────
+function buildMini() {
+    const n=new Date(), y=n.getFullYear(), mi=n.getMonth(), td=n.getDate();
+    document.getElementById('miniMonth').textContent=MONS[mi].slice(0,3).toUpperCase()+' '+y;
+    const g=document.getElementById('miniGrid'); g.innerHTML='';
+    DHD.forEach(d=>{const e=document.createElement('div');e.className='mg hdr';e.textContent=d;g.appendChild(e);});
+    const fd=new Date(y,mi,1).getDay(), ld=new Date(y,mi+1,0).getDate();
+    for(let i=0;i<fd;i++){const e=document.createElement('div');e.className='mg';g.appendChild(e);}
+    for(let d=1;d<=ld;d++){
+        const e=document.createElement('div'); e.className='mg d'; e.textContent=d;
+        if(d===td) e.classList.add('today');
+        if(festivals[`${y}-${pad(mi+1)}-${pad(d)}`]) e.classList.add('fest');
+        g.appendChild(e);
+    }
+}
+buildMini();
+
+// ── FULL CALENDAR ─────────────────────────────────────────
+function openCalendar() {
+    const y=new Date().getFullYear(), today=new Date();
+    document.getElementById('calYear').textContent=y;
+    const grid=document.getElementById('yearGrid'); grid.innerHTML='';
+    MONS.forEach((name,mi)=>{
+        const block=document.createElement('div');
+        const t=document.createElement('div');
+        t.className='m-title'+(mi===today.getMonth()?' cur':'');
+        t.textContent=name+' '+y; block.appendChild(t);
+        const cg=document.createElement('div'); cg.className='m-grid';
+        DHD.forEach(d=>{const h=document.createElement('div');h.className='cc dh';h.textContent=d;cg.appendChild(h);});
+        const fd=new Date(y,mi,1).getDay(), ld=new Date(y,mi+1,0).getDate();
+        for(let i=0;i<fd;i++){const e=document.createElement('div');e.className='cc';cg.appendChild(e);}
+        for(let d=1;d<=ld;d++){
+            const c=document.createElement('div'); c.className='cc d'; c.textContent=d;
+            const f=`${y}-${pad(mi+1)}-${pad(d)}`;
+            if(today.getFullYear()===y&&today.getMonth()===mi&&today.getDate()===d) c.classList.add('tod');
+            if(festivals[f]){c.classList.add('fst');c.title=festivals[f];}
+            cg.appendChild(c);
+        }
+        block.appendChild(cg); grid.appendChild(block);
+    });
+    setTimeout(()=>{
+        document.querySelector('.m-title.cur')?.scrollIntoView({behavior:'smooth',block:'start'});
+    },80);
+    document.getElementById('calModal').classList.add('open');
+}
+function closeCalendar(){document.getElementById('calModal').classList.remove('open');}
+document.getElementById('calModal').addEventListener('click',e=>{
+    if(e.target===document.getElementById('calModal')) closeCalendar();
+});
+</script>
+</body>
+</html>
